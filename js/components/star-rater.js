@@ -13,7 +13,8 @@ var StarRater = React.createClass({
             }
             var star = (
                 <i className={className} key={i}
-                    onClick={this.props.onChange.bind(null, i + 1)}>
+                    onClick={this.props.onChange.bind(null, i + 1)}
+                    style={{ cursor: 'pointer' }}>
                 </i>
             );
             stars.push(star);

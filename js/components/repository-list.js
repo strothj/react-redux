@@ -1,17 +1,13 @@
 var React = require('react');
+var connect = require('react-redux').connect;
 
 var Repository = require('./repository');
+var actions = require('../actions/index');
 
 var RepositoryList = React.createClass({
-    getDefaultProps: function() {
-        return {
-            repositories: []
-        };
-    },
-
     addRepository: function() {
         var repositoryName = this.refs.repositoryName.value;
-        // TODO: Add the repository to the state
+        this.props.dispatch(actions.addRepository(repositoryName));
     },
 
     render: function() {
@@ -31,4 +27,12 @@ var RepositoryList = React.createClass({
     },
 });
 
-module.exports = RepositoryList;
+var mapStateToProps = function(state, props) {
+    return {
+        repositories: state
+    };
+}
+
+var Container = connect(mapStateToProps)(RepositoryList);
+
+module.exports = Container;
